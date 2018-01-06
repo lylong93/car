@@ -2,5 +2,18 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "superagent": "^3.8.2"
-  }
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1"
+  },
+  "name": "node",
+  "version": "1.0.0",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon --exec babel-node  app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
