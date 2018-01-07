@@ -9,8 +9,8 @@ import Nav from './components/Nav.vue'
 export default {
   name: 'app',
   components: {
-    'm-nav': Nav,
-  },
+    'm-nav': Nav
+  }
 }
 
 </script>

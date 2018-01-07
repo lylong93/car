@@ -2,30 +2,32 @@ const cheerio = require('cheerio');
 const superagent = require('superagent');
 
 
-const url1 = "http://travel.qunar.com/travelbook/api/index/notes?elite=false&page=2&lazy=false";
-const url2 = "https://www.zhihu.com/explore";
+// const ourl = "http://travel.qunar.com/travelbook/api/index/notes?";
+const ourl = "http://travel.qunar.com/travelbook/list.htm?";
 
-export default function get() {
+export default function get(params) {
   return new Promise(function(resolve, reject) {
-    superagent(url1)
+    const url = ourl + `order=${params.elite}&page=${params.page}`;
+    superagent(url)
       .end(function(err, res) {
         if (err) {
-          console.log(err)
+          resolve('err')
         } else {
-          const $ = cheerio.load(res.body.data)
+          const $ = cheerio.load(res.text)
           const data = [];
-          $('.note_ul').children().each(function(i, el) {
+          $('.b_strategy_list').children().each(function(i, el) {
             let obj = {}
-            obj.id = $(this).find('h2').find('a').attr('href')
+            obj.id = $(this).find('h2').attr('data-bookid')
             obj.title = $(this).find('h2').text()
-            obj.name = $(this).find('.person').children().first().text()
-            obj.pic = $(this).find('.person').children().first().attr('href')
-            obj.time = $(this).find('.person').children().eq(1).text()
-            obj.days = $(this).find('.person').children().eq(2).text()
+            obj.name = $(this).find('.user_name').text()
+            obj.userpic = $(this).find('.face').find('img').attr('src')
+            obj.days = $(this).find('.date').text().substring(0, 10)
+            obj.bgimg = $(this).find('.pics').children().eq(0).find('img').attr('src')
             data.push(obj)
           })
-          console.log(data)
-          resolve($.html())
+          // console.log(data)
+          // resolve($.html())
+          resolve(data)
         }
       });
   })
