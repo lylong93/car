@@ -4,7 +4,9 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
-function resolve (dir) {
+const PostCompilePlugin = require('webpack-post-compile-plugin')
+
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -27,9 +29,8 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    publicPath: process.env.NODE_ENV === 'production' ?
+      config.build.assetsPublicPath : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -38,6 +39,9 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  plugins: [
+    new PostCompilePlugin()
+  ],
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
@@ -89,4 +93,5 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty'
   }
+
 }

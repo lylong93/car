@@ -4,9 +4,7 @@
   </div>
 </template>
 <script>
-export default {
-  name: 'Find'
-}
+export default {}
 
 </script>
 <style scoped>
