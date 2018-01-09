@@ -14,7 +14,6 @@
         <m-Register/>
       </div>
     </div>
-    <!-- <mbu @click="go ">show dialog</mbu> -->
   </div>
 </template>
 <script>
@@ -25,8 +24,7 @@ export default {
   data() {
     return {
       tabs: ['登录', '注册'],
-      num: 0,
-      isActive: false
+      num: 0
     }
   },
   methods: {

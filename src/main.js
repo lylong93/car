@@ -4,8 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuex from 'vuex'
-/* eslint-disable no-new */
 
+/* eslint-disable no-unused-vars */
 import { style } from 'cube-ui' // 全局使用cube-ui
 
 Vue.use(Vuex)
