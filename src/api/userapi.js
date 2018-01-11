@@ -1,15 +1,13 @@
 import axios from 'axios'
 
 export function login(body) {
-  return axios.post('/api/user', {
-    body
-  })
+  return axios.post('/api/user/login', body)
+}
+
+export function rejister(body) {
+  return axios.post('/api/user/rejister', body)
 }
 
 export function logout() {
-  return axios.paot('/api/user', {})
-}
-
-export function rejister() {
-  return axios.paot('/api/user', {})
+  return axios.post('/api/user', {})
 }

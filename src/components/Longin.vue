@@ -2,11 +2,11 @@
   <div class="longin-wrapper">
     <div class="login-input">
       用户
-      <input class="" type="text" v-model="state.user" name="fname" placeholder="输入用户">
+      <input class="" type="text" v-model="state.name" name="fname" placeholder="输入用户">
     </div>
     <div class="login-input">
       密码
-      <input class="" type="text" v-model="state.password" name="lname" placeholder="输入密码">
+      <input class="" type="text" v-model="state.pwd" name="lname" placeholder="输入密码">
     </div>
     <div class="login-button">
       <cube-button @click="login">登录</cube-button>
@@ -15,12 +15,13 @@
 </template>
 <script>
 import { Button } from 'cube-ui'
+import api from '../api'
 export default {
   data() {
     return {
       state: {
-        user: '',
-        password: ''
+        name: '',
+        pwd: ''
       }
     }
   },
@@ -29,7 +30,25 @@ export default {
   },
   methods: {
     login() {
-      this.$router.push({ name: 'ok', params: this.state })
+      api.Login(this.state)
+        .then((data) => {
+          return data.data
+        })
+        .then((data) => {
+          switch (data.err) {
+            case 1:
+              console.log(data.msg)
+              break
+            case 2:
+              console.log(data.msg)
+              break
+            case 3:
+              console.log(data.msg)
+              break
+            default:
+              console.log(data)
+          }
+        })
     }
   }
 }

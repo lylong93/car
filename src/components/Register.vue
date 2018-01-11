@@ -5,11 +5,11 @@
     </div>
     <div class="login-input">
       用户
-      <input class="" type="text" v-model="state.user" name="fname" placeholder="输入用户">
+      <input class="" type="text" v-model="state.name" name="fname" placeholder="输入用户">
     </div>
     <div class="login-input">
       密码
-      <input class="" type="text" v-model="state.password" name="lname" placeholder="输入密码">
+      <input class="" type="text" v-model="state.pwd" name="lname" placeholder="输入密码">
     </div>
     <div class="login-input">
       密码
@@ -29,16 +29,19 @@ export default {
   data() {
     return {
       state: {
-        user: '',
-        password: ''
+        name: '',
+        pwd: ''
       }
     }
   },
 
   methods: {
     rejister() {
-      // this.$router.replace('/')
-      console.log(this.state);
+      console.log(this.state)
+      api.Rejister(this.state)
+        .then((d) => {
+          console.log(d)
+        })
     }
   },
   components: {
