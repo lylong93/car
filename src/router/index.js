@@ -17,19 +17,17 @@ export default new Router({
   }, {
     path: '/ok',
     name: 'ok',
-    component: ok
+    component: ok,
+    children: [{
+      path: '/news',
+      component: News
+    }, {
+      path: '/find',
+      component: Find
+    }, {
+      path: '/me',
+      component: Me
+    }]
     // beforeEnter: beforeEnter
-  }, {
-    path: '/news',
-    name: 'HelloWorld',
-    component: News
-  }, {
-    path: '/find',
-    name: 'HelloWorld',
-    component: Find
-  }, {
-    path: '/me',
-    name: 'HelloWorld',
-    component: Me
   }]
 })

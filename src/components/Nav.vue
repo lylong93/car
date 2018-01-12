@@ -12,7 +12,11 @@ export default {}
 <style lang='scss'>
 .ok {
   height: 60px;
-  background: red,
+  width: 100%;
+  background: red;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 
 </style>

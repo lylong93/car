@@ -37,7 +37,6 @@ export default {
 
   methods: {
     rejister() {
-      console.log(this.state)
       api.Rejister(this.state)
         .then((d) => {
           console.log(d)
