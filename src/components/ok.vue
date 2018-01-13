@@ -2,6 +2,7 @@
   <div>
     <m-nav/>
     <router-view/>
+    <!-- <v-touch></v-touch> -->
   </div>
 </template>
 <script>

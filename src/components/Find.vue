@@ -1,82 +1,158 @@
 <template>
-  <div class="find-wrapper">
-    <div class="ll">
-      <div class="main" @click="show" ref="test">nihoa
+  <div>
+    <div class="find-wrapper" ref="findWwrapper">
+      <div class="main" @click="show" ref="main">
+        <img src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2522026432,1558022678&fm=27&gp=0.jpg' ref="img">
+        <div class="main-title">我是题目而已</div>
       </div>
-      <div class="detali" ref="detali">okok</div>
-      <div class="tab" ref="tab">选项</div>
+      <div class="tab" ref="tab">
+        <div v-if="open">
+          <span>收藏</span>
+          <span>对话</span>
+        </div>
+        <div v-else>
+          <span @click="prev">上一个</span>
+          <span @click="next">下一个</span>
+        </div>
+      </div>
+      <div class="detali" ref="detali">
+        <h1>ok</h1>
+        <h1>ok</h1>
+        <h1>ok</h1>
+        <h1>ok</h1>
+        <h1>ok</h1>
+        <h1>ok</h1>
+        <h1>ok</h1>
+        <h1>ok</h1>
+        <h1>ok</h1>
+      </div>
     </div>
-    <div class="close" @click="out">关闭</div>
+    <div class="close" @click="close">关闭</div>
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      open: false
+    }
+  },
   methods: {
-    onSwipeLeft() {
-      console.log('ok')
-      this.$router.push('news')
-    },
     show() {
-      this.$refs.test.style.animation = 'movein 1s';
-      this.$refs.test.style.animationFillMode = 'forwards';
-      this.$refs.detali.style.animation = 'dein 1s';
-      this.$refs.detali.style.animationFillMode = 'forwards';
-      // this.$refs.detali.style.display = "block";
-      this.$refs.tab.style.animation = 'tabin 1s'
-      this.$refs.tab.style.animationFillMode = 'forwards';
+      this.open = true
+      this._open()
     },
-    out() {
-      this.$refs.test.style.animation = 'moveout 1s';
-      this.$refs.detali.style.animation = 'deout 1s';
-      this.$refs.detali.style.display = "none";
+    close() {
+      this.open = false
+      this._close()
+    },
+    prev() {
+      this.$refs.findWwrapper.style.animation = 'route1 1s'
+    },
+    next() {
+      this.$refs.findWwrapper.style.animation = 'route2 1s'
+      this.$refs.findWwrapper.addEventListener('animationend', function() {
+        this.$refs.findWwrapper.style.animation = null
+      }.bind(this))
+    },
+    _open() {
+      this.$refs.findWwrapper.style.overflow = 'scroll'
+      this.$refs.main.style.animation = 'movein 1s'
+      this.$refs.main.style.animationFillMode = 'forwards'
+      this.$refs.detali.style.animation = 'dein 1s'
+      this.$refs.detali.style.animationFillMode = 'forwards'
+
+      this.$refs.tab.style.animation = 'tabin 1s'
+      this.$refs.tab.style.animationFillMode = 'forwards'
+
+      this.$refs.img.style.animation = "imgi 1s"
+      this.$refs.img.style.animationFillMode = 'forwards'
+    },
+    _close() {
+      this.$refs.findWwrapper.scrollTop = 0
+      this.$refs.findWwrapper.style.overflow = 'hidden'
+      this.$refs.main.style.animation = 'moveout 1s'
+      this.$refs.detali.style.animation = 'deout 0.7s'
+
       this.$refs.tab.style.animation = 'tabout 1s'
+      this.$refs.img.style.animation = "imgo 1s"
     }
   }
 }
 
 </script>
 <style lang='scss'>
-.find-wrapper {}
-
-.ll {
+.find-wrapper {
   position: absolute;
   top: 0;
   bottom: 60px;
   width: 100%;
-  overflow: hidden;
+  overflow: hidden; // background: black;
   .main {
     height: 50%;
-    width: 60%;
-    background: yellow;
+    width: 80%; // background: yellow;
     margin: 0 auto;
     position: relative;
     top: 20%;
+    overflow: hidden;
+    img {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      width: 100%; // opacity: 0.3;
+    }
+    .main-title {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      color: white;
+      font-size: 50px;
+    }
   }
+
   .detali {
-    height: 500px;
-    width: 300px;
+    // height: 900px;
+    width: 60%;
     background: blue;
     margin: 0 auto;
-    position: relative; // top: 150px;
-    display: none; // opacity: 0;
-    overflow: scroll
+    position: relative; // display: none;
+    opacity: 0;
+    font-size: 100px;
   }
   .tab {
     background: rgb(150, 143, 126);
     height: 60px;
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     position: relative;
-    bottom: -20%; // top: 20%;
+    bottom: -20%;
+    z-index: 10;
   }
 }
 
-
 .close {
-  position: fixed;
+  position: absolute;
   top: 0;
+  z-index: 10;
 }
 
+@keyframes route1 {
+  from {
+    transform: rotateZ(0deg) scale(0);
+  }
+  to {
+    transform: rotateZ(-1080deg) scale(1);
+  }
+}
+
+@keyframes route2 {
+  from {
+    transform: rotateZ(0deg) scale(0);
+  }
+  to {
+    transform: rotateZ(1080deg) scale(1);
+  }
+}
 
 @keyframes movein {
   from {}
@@ -93,13 +169,13 @@ export default {
   }
   to {
     top: 20%;
-    width: 60%;
+    width: 80%;
   }
 }
 
 @keyframes dein {
   from {
-    top: 150px;
+    top: 20%;
     opacity: 0;
   }
   to {
@@ -111,17 +187,19 @@ export default {
 @keyframes deout {
   from {
     top: 0px;
+    opacity: 1;
   }
   to {
-    top: 150px;
+    top: 20%;
+    opacity: 0;
   }
 }
 
 @keyframes tabin {
   from {
     position: fixed;
-    bottom: 30%;
-    left: 20%;
+    bottom: 27%;
+    left: 10%;
   }
   to {
     position: fixed;
@@ -142,8 +220,33 @@ export default {
   }
   to {
     position: fixed;
-    bottom: 30%;
-    left: 20%;
+    bottom: 27%;
+    left: 10%;
+  }
+}
+
+@keyframes imgi {
+  from {
+    position: absolute; // top: -50%;
+    top: 0; // opacity: 1;
+  }
+  to {
+    position: absolute; // top: -50%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes imgo {
+  from {
+    position: absolute;
+    top: 0;
+    left: 0%;
+  }
+  to {
+    position: absolute;
+    top: 0;
   }
 }
 
