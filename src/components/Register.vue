@@ -18,7 +18,7 @@
     <cube-popup type="my-popup" ref="myPopup">
     </cube-popup>
     <div class="login-button">
-      <cube-button @click="rejister">注册</cube-button>
+      <cube-button @click="rejister" :disabled="true">注册</cube-button>
     </div>
   </div>
 </template>

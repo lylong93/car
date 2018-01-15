@@ -7,7 +7,7 @@ import Vuex from 'vuex'
 import VueTouch from 'vue-touch'
 
 /* eslint-disable no-unused-vars */
-import { style } from 'cube-ui' // 全局使用cube-ui
+// import { style } from 'cube-ui' // 全局使用cube-ui
 
 Vue.use(Vuex)
 Vue.use(VueTouch, { name: 'v-touch' })

@@ -14,7 +14,8 @@
   </div>
 </template>
 <script>
-import { Button } from 'cube-ui'
+// import { Button } from 'cube-ui'
+import button from '../base/button'
 import api from '../api'
 export default {
   data() {
@@ -26,7 +27,7 @@ export default {
     }
   },
   components: {
-    CubeButton: Button
+    CubeButton: button
   },
   methods: {
     login() {
