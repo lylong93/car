@@ -32,13 +32,13 @@ export default {
 <style lang="scss">
 @import'../style/index.scss';
 .class {
-  padding: 20px;
+  padding: 2%;
   width: 100%;
   border: none;
   outline: none;
   cursor: pointer;
   line-height: 1;
-  border-radius: 5px;
+  border-radius: 5px; // text-align: center;
   color: $font-color;
   font-size: $font-size;
   background: $linght-color;

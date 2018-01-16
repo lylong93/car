@@ -1,29 +1,26 @@
 <template>
-  <div class="longin-wrapper">
-    <div class="login-input">
-      头像
+  <div class="register-wrapper">
+    <div class="register-input">
+      账号
+      <l-input placeholder="输入账号" />
     </div>
-    <div class="login-input">
-      用户
-      <input class="" type="text" v-model="state.name" name="fname" placeholder="输入用户">
-    </div>
-    <div class="login-input">
+    <div class="register-input">
       密码
-      <input class="" type="text" v-model="state.pwd" name="lname" placeholder="输入密码">
+      <l-input placeholder="输入密码" />
     </div>
-    <div class="login-input">
-      密码
-      <input class="" type="text" name="lname" placeholder="确认密码">
+    <div class="register-input">
+      确认
+      <l-input placeholder="再次输入密码" />
     </div>
-    <cube-popup type="my-popup" ref="myPopup">
-    </cube-popup>
-    <div class="login-button">
-      <cube-button @click="rejister" :disabled="true">注册</cube-button>
+    <div class="register-button">
+      <l-button @click="rejister" :disabled="true">注册</l-button>
     </div>
   </div>
 </template>
 <script>
 import { Button, Tip } from 'cube-ui'
+import input from '../base/input'
+import button from '../base/button'
 import api from '../api'
 export default {
   data() {
@@ -44,24 +41,25 @@ export default {
     }
   },
   components: {
-    CubeButton: Button,
-    CubePopup: Tip
+    LButton: button,
+    LInput: input
   }
 }
 
 </script>
 <style lang="scss">
-.longin-wrapper {
-  margin: 0 15px;
-  .login-input {
-    height: 50px;
-    line-height: 50px;
-    margin: 10px;
-  }
-  .login-button {
-    width: 100%;
+.register-wrapper {
+  height: 70%;
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  .register-button {
     position: absolute;
-    bottom: 20px;
+    width: 100%;
+    bottom: 1%;
+    left: 0;
   }
 }
 

@@ -1,21 +1,22 @@
 <template>
   <div class="longin-wrapper">
     <div class="login-input">
-      用户
-      <input class="" type="text" v-model="state.name" name="fname" placeholder="输入用户">
+      <span>账号</span>
+      <l-input placeholder="输入账号" v-model="state.name" />
     </div>
     <div class="login-input">
-      密码
-      <input class="" type="text" v-model="state.pwd" name="lname" placeholder="输入密码">
+      <span>密码</span>
+      <l-input placeholder="输入密码" v-model="state.pwd" />
     </div>
     <div class="login-button">
-      <cube-button @click="login">登录</cube-button>
+      <l-button @click="login">登录</l-button>
     </div>
   </div>
 </template>
 <script>
 // import { Button } from 'cube-ui'
 import button from '../base/button'
+import input from '../base/input'
 import api from '../api'
 export default {
   data() {
@@ -27,7 +28,8 @@ export default {
     }
   },
   components: {
-    CubeButton: button
+    LButton: button,
+    LInput: input
   },
   methods: {
     login() {
@@ -57,16 +59,17 @@ export default {
 </script>
 <style lang="scss">
 .longin-wrapper {
-  margin: 0 15px;
-  .login-input {
-    height: 50px;
-    line-height: 50px;
-    margin: 10px;
-  }
+  height: 70%;
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   .login-button {
-    width: 100%;
     position: absolute;
-    bottom: 20px;
+    width: 100%;
+    bottom: 1%;
+    left: 0;
   }
 }
 

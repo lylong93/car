@@ -1,36 +1,35 @@
 <template>
-  <div>
-    <div class="find-wrapper" ref="findWwrapper">
-      <div class="main" @click="show" ref="main">
-        <img src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2522026432,1558022678&fm=27&gp=0.jpg' ref="img">
-        <div class="main-title">我是题目而已</div>
+  <div class="find-wrapper" ref="findWwrapper">
+    <div class="main" @click="show" ref="main">
+      <img src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2522026432,1558022678&fm=27&gp=0.jpg' ref="img">
+      <div class="main-title">我是题目而已</div>
+    </div>
+    <div class="tab" ref="tab">
+      <div v-if="open" class="otab">
+        <l-button class="tab-every">收藏</l-button>
+        <l-button class="tab-every">对话</l-button>
       </div>
-      <div class="tab" ref="tab">
-        <div v-if="open">
-          <span>收藏</span>
-          <span>对话</span>
-        </div>
-        <div v-else>
-          <span @click="prev">上一个</span>
-          <span @click="next">下一个</span>
-        </div>
-      </div>
-      <div class="detali" ref="detali">
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
+      <div v-else class="otab">
+        <l-button @click="prev" class="tab-every">上一个</l-button>
+        <l-button @click="next" class="tab-every">下一个</l-button>
       </div>
     </div>
-    <div class="close" @click="close">关闭</div>
+    <div class="detali" ref="detali">
+      <h1>ok</h1>
+      <h1>ok</h1>
+      <h1>ok</h1>
+      <h1>ok</h1>
+      <h1>ok</h1>
+      <h1>ok</h1>
+      <h1>ok</h1>
+      <h1>ok</h1>
+      <h1>ok</h1>
+    </div>
+    <div class="close" @click="close" v-if="open">关闭</div>
   </div>
 </template>
 <script>
+import button from '../base/button'
 export default {
   data() {
     return {
@@ -77,7 +76,11 @@ export default {
       this.$refs.tab.style.animation = 'tabout 1s'
       this.$refs.img.style.animation = "imgo 1s"
     }
-  }
+  },
+  components: {
+    LButton: button,
+
+  },
 }
 
 </script>
@@ -87,19 +90,19 @@ export default {
   top: 0;
   bottom: 60px;
   width: 100%;
-  overflow: hidden; // background: black;
+  overflow: hidden;
   .main {
     height: 50%;
-    width: 80%; // background: yellow;
+    width: 80%;
+    background: yellow;
     margin: 0 auto;
     position: relative;
     top: 20%;
     overflow: hidden;
     img {
-      position: absolute;
       height: 100%;
       top: 0;
-      width: 100%; // opacity: 0.3;
+      width: 100%;
     }
     .main-title {
       position: absolute;
@@ -111,11 +114,10 @@ export default {
   }
 
   .detali {
-    // height: 900px;
     width: 60%;
     background: blue;
     margin: 0 auto;
-    position: relative; // display: none;
+    position: relative;
     opacity: 0;
     font-size: 100px;
   }
@@ -127,11 +129,21 @@ export default {
     position: relative;
     bottom: -20%;
     z-index: 10;
+    flex-direction: row;
+    .otab {
+      display: flex;
+      justify-content: space-around;
+      .tab-every {
+        width: 40%;
+        height: 50%;
+        margin: 10px 0 0 0;
+      }
+    }
   }
 }
 
 .close {
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: 10;
 }
@@ -173,6 +185,7 @@ export default {
   }
 }
 
+//detail
 @keyframes dein {
   from {
     top: 20%;
@@ -195,10 +208,11 @@ export default {
   }
 }
 
+// tab
 @keyframes tabin {
   from {
     position: fixed;
-    bottom: 27%;
+    bottom: 26%;
     left: 10%;
   }
   to {
@@ -209,6 +223,7 @@ export default {
     left: 0;
   }
 }
+
 
 @keyframes tabout {
   from {
@@ -220,18 +235,18 @@ export default {
   }
   to {
     position: fixed;
-    bottom: 27%;
+    bottom: 26%;
     left: 10%;
   }
 }
 
 @keyframes imgi {
   from {
-    position: absolute; // top: -50%;
+    // top: -50%;
     top: 0; // opacity: 1;
   }
   to {
-    position: absolute; // top: -50%;
+    // top: -50%;
     top: 0;
     left: 0;
     opacity: 1;
@@ -240,12 +255,12 @@ export default {
 
 @keyframes imgo {
   from {
-    position: absolute;
+
     top: 0;
     left: 0%;
   }
   to {
-    position: absolute;
+
     top: 0;
   }
 }
