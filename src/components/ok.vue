@@ -1,7 +1,7 @@
 <template>
   <div>
     <m-nav/>
-    <router-view/>
+    <router-view class="kkk" />
     <!-- <v-touch></v-touch> -->
   </div>
 </template>
@@ -15,6 +15,12 @@ export default {
 
 </script>
 <style lang="scss">
-
+.kkk {
+  position: absolute;
+  top: 0;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+}
 
 </style>

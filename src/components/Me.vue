@@ -1,62 +1,54 @@
 <template>
-  <div class="add-wrapper">
-    <div class="add-img">
-      图片
-      <input type="file">
+  <div class="me-wrapper">
+    <div class="me-avater">
+      <l-upload/>
     </div>
-    <div class="add-addres">题目
-      <input type="text" v-model="state.title">
-    </div>
-    <div class="add-addres">地址
-      <input type="text" v-model="state.address">
-    </div>
-    <div class="add-time">时间
-      <input type="text" v-model="state.time">
-    </div>
-    <div class="add-main">内容
-      <textarea placeholder="活动内容" v-model="state.main"></textarea>
-    </div>
-    <div @click="submit">发布活动</div>
-    <div>
-      <form enctype="multipart/form-data" ref="for">
-        <input type="file" name="avatar">
-        <input type="text" v-model="state.time" name="text">
-        <textarea placeholder="活动内容" v-model="state.main" name="ddd"></textarea>
-        <input value="提交" @click='tijiao'>
-      </form>
+    <div class="me-other">
+      <l-button @click="toAdd">
+        发布活动
+      </l-button>
+      <l-button>
+        我的收藏
+      </l-button>
+      <l-button>
+        换肤
+      </l-button>
+      <l-button>
+        退出
+      </l-button>
     </div>
   </div>
 </template>
 <script>
 import api from '../api'
+import input from '../base/input'
+import button from '../base/button'
+import upload from '../base/upload'
 export default {
-  data() {
-    return {
-      state: {
-        address: '',
-        time: '',
-        main: '',
-        title: ''
-      }
+  methods: {
+    toAdd() {
+      this.$router.push('Add')
     }
   },
-  methods: {
-    submit() {
-      api.Publish(this.state)
-        .then((data) => {
-          console.log(data);
-        })
-    },
-    tijiao() {
-      const form = this.$refs.for
-      let data = new FormData(form);
-      api.dd(data)
-    }
-  }
+  components: {
+    LButton: button,
+    LInput: input,
+    LUpload: upload
+  },
 }
 
 </script>
 <style lang='scss'>
-@import'../style/index.scss';
+.me-wrapper {
+  .me-avater {
+    height: 40%;
+  }
+  .me-other {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
 
 </style>

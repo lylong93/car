@@ -1,7 +1,8 @@
 <template>
   <div class="input-class">
     <input v-if='type==="text"' class="input-class-text" :placeholder=placeholder @focus='ok' @blur="out" />
-    <textarea v-else>
+    <!-- <input type="file" name=""> -->
+    <textarea class="input-class-textarea" :rows="textareaSize.rows" :cols="textareaSize.cols" v-else>
     </textarea>
     <slot></slot>
   </div>
@@ -16,11 +17,17 @@ export default {
     placeholder: {
       type: String,
       default: ''
+    },
+    textareaSize: {
+      type: Object,
+      default () {
+        return { rows: '5', cols: '50' }
+      }
     }
   },
   methods: {
     ok() {
-      console.log('ok')
+      console.log(this.textareaSize)
     },
     out() {
       console.log('out')
@@ -32,12 +39,25 @@ export default {
 <style lang="scss">
 @import'../style/index.scss';
 .input-class {
-  display: inline-block; // font-size: 20px;
-  // width: 100%;
+  display: inline-block;
   position: relative;
   .input-class-text {
     display: inline-block;
     padding: 5% 20%;
+    width: 60%;
+    border: 1px solid yellow;
+    border-radius: 5px;
+    outline: none;
+    text-align: left;
+    line-height: 1;
+    font-size: inherit;
+    &:focus {
+      border: 1px solid red;
+    }
+  }
+  .input-class-textarea {
+    display: inline-block;
+    padding: 5% 5%;
     width: 60%;
     border: 1px solid yellow;
     border-radius: 5px;

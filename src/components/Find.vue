@@ -7,7 +7,7 @@
     <div class="tab" ref="tab">
       <div v-if="open" class="otab">
         <l-button class="tab-every">收藏</l-button>
-        <l-button class="tab-every">对话</l-button>
+        <!-- <l-button class="tab-every">对话</l-button> -->
       </div>
       <div v-else class="otab">
         <l-button @click="prev" class="tab-every">上一个</l-button>
@@ -99,6 +99,7 @@ export default {
     position: relative;
     top: 20%;
     overflow: hidden;
+    box-shadow: 10px 10px 10px black;
     img {
       height: 100%;
       top: 0;

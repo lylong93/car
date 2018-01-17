@@ -1,30 +1,5 @@
 <template>
   <div class="add-wrapper">
-    <form enctype="multipart/form-data" ref="for" class="add-form">
-      <div>
-        图片
-        <l-input />
-      </div>
-      <div>
-        题目
-        <l-input/>
-      </div>
-      <div>
-        地址
-        <l-input/>
-      </div>
-      <div>
-        时间
-        <l-input/>
-      </div>
-      <div class="t">
-        输入内容
-        <l-input type="tes" />
-      </div>
-      <div>
-        <l-button @click='add'>提交</l-button>
-      </div>
-    </form>
   </div>
 </template>
 <script>
@@ -49,16 +24,13 @@ export default {
           console.log(data);
         })
     },
-    add() {
+    tijiao() {
       const form = this.$refs.for
       let data = new FormData(form);
       api.dd(data)
     }
   },
-  components: {
-    LButton: button,
-    LInput: input
-  },
+
 }
 
 </script>

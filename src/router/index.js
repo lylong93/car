@@ -5,6 +5,7 @@ import News from '@/components/News'
 import Find from '@/components/Find'
 import Me from '@/components/Me'
 import ok from '@/components/ok'
+import Add from '@/components/Add'
 // import beforeEnter from './beforeEnter'
 
 Vue.use(Router)
@@ -27,7 +28,10 @@ export default new Router({
     }, {
       path: '/me',
       component: Me
+    }, {
+      path: '/add',
+      name: 'Add',
+      component: Add
     }]
-    // beforeEnter: beforeEnter
   }]
 })
