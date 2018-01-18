@@ -30,6 +30,7 @@
 </template>
 <script>
 import button from '../base/button'
+import api from '../api'
 export default {
   data() {
     return {
@@ -49,6 +50,10 @@ export default {
       this.$refs.findWwrapper.style.animation = 'route1 1s'
     },
     next() {
+      api.Getaction(this.state)
+        .then((data) => {
+          console.log(data)
+        })
       this.$refs.findWwrapper.style.animation = 'route2 1s'
       this.$refs.findWwrapper.addEventListener('animationend', function() {
         this.$refs.findWwrapper.style.animation = null

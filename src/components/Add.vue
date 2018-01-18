@@ -1,36 +1,36 @@
 <template>
   <div class="add-wrapper">
-    <form enctype="multipart/form-data" ref="for" class="add-form">
+    <form class="add-form" ref="for">
+      <l-back></l-back>
       <div>
-        图片
-        <l-input />
+        <l-upload name="avatar" />
       </div>
       <div>
         题目
-        <l-input/>
+        <l-input v-model="text" name="title" />
       </div>
       <div>
         地址
-        <l-input/>
+        <l-input v-model="address" name="address" />
       </div>
       <div>
         时间
-        <l-input/>
+        <l-input v-model="time" name="time" />
       </div>
       <div class="t">
         输入内容
-        <l-input type="tes" />
-      </div>
-      <div>
-        <l-button @click='add'>提交</l-button>
+        <l-input type="tes" v-model="main" name="main" />
       </div>
     </form>
+    <l-button @click='add' type="sublime">提交</l-button>
   </div>
 </template>
 <script>
 import api from '../api'
 import input from '../base/input'
 import button from '../base/button'
+import upload from '../base/upload'
+import back from '../base/back'
 export default {
   data() {
     return {
@@ -43,21 +43,20 @@ export default {
     }
   },
   methods: {
-    submit() {
-      api.Publish(this.state)
-        .then((data) => {
-          console.log(data);
-        })
-    },
-    add() {
+    add(e) {
       const form = this.$refs.for
       let data = new FormData(form);
-      api.dd(data)
+      api.Publish(data)
+        .then((data) => {
+          console.log(data)
+        })
     }
   },
   components: {
     LButton: button,
-    LInput: input
+    LInput: input,
+    LUpload: upload,
+    LBack: back
   },
 }
 
@@ -66,7 +65,7 @@ export default {
 @import'../style/index.scss';
 .add-wrapper {
   .add-form {
-    height: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

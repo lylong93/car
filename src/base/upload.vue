@@ -1,8 +1,8 @@
 <template>
   <div class="upload-class">
     <img :src="url" height="100%" width="100%" v-if="have">
-    <input type="file" ref="type" @change="change" :disabled="disabled" class="in">
-    <span @click="clean" v-if="have">删除</span>
+    <input type="file" ref="type" @change="change" class="in" :name="name">
+    <span @click="clean" v-if="have" class="clean">删除</span>
   </div>
 </template>
 <script>
@@ -43,20 +43,25 @@ export default {
 <style lang="scss">
 @import'../style/index.scss';
 .upload-class {
+  display: inline-block;
   height: 100px;
   width: 100px;
-  background: red;
+  border: 1px solid red;
   position: relative;
   .in {
     display: inline-block;
     height: 100%;
     width: 100%;
-    opacity: 0;
   }
   img {
     position: absolute;
     top: 0;
     left: 0;
+  }
+  .clean {
+    position: absolute;
+    top: 50%;
+    left: 50%;
   }
 }
 

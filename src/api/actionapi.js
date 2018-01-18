@@ -1,11 +1,14 @@
 import axios from 'axios'
-const config = {
-  headers: { 'Content-Type': 'multipart/form-data' }
-}
+
 export function publish(body) {
-  return axios.post('/api/action/publish', body)
+  // return axios.post('/api/action/publish', body)
+  return axios({
+    method: 'post',
+    url: '/api/action/publish',
+    headers: { 'Content-Type': 'multipart/form-data' },
+    data: body,
+  })
 }
-export function dd(body) {
-  console.log(body)
-  return axios.post('/api/img', body)
+export function getaction(body) {
+  return axios.get('/api/action/getaction')
 }

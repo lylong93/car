@@ -1,8 +1,7 @@
 <template>
   <div class="input-class">
-    <input v-if='type==="text"' class="input-class-text" :placeholder=placeholder @focus='ok' @blur="out" />
-    <!-- <input type="file" name=""> -->
-    <textarea class="input-class-textarea" :rows="textareaSize.rows" :cols="textareaSize.cols" v-else>
+    <input v-if='type==="text"' :name="name" class="input-class-text" :placeholder="placeholder" @focus='ok' @blur="out" />
+    <textarea class="input-class-textarea" :placeholder="placeholder" :name="name" :rows="textareaSize.rows" :cols="textareaSize.cols" v-else>
     </textarea>
     <slot></slot>
   </div>
@@ -18,6 +17,10 @@ export default {
       type: String,
       default: ''
     },
+    name: {
+      type: String,
+      default: ''
+    },
     textareaSize: {
       type: Object,
       default () {
@@ -30,7 +33,7 @@ export default {
       console.log(this.textareaSize)
     },
     out() {
-      console.log('out')
+      // console.log('out')
     }
   }
 }

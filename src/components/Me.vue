@@ -1,7 +1,6 @@
 <template>
   <div class="me-wrapper">
     <div class="me-avater">
-      <l-upload/>
     </div>
     <div class="me-other">
       <l-button @click="toAdd">

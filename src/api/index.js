@@ -1,5 +1,5 @@
 import newsapi from './newsapi'
-import { publish, dd } from './actionapi'
+import { publish, getaction } from './actionapi'
 import { login, logout, rejister } from './userapi'
 const api = {
   getNews: newsapi,
@@ -7,7 +7,7 @@ const api = {
   Logout: logout,
   Rejister: rejister,
   Publish: publish,
-  dd: dd,
+  Getaction: getaction,
 }
 
 export default api

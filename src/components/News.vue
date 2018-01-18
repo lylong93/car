@@ -84,46 +84,49 @@ export default {
 
 </script>
 <style lang='scss'>
-.news-main {
-  display: flex;
-  flex-wrap: wrap;
-  .ever-news {
-    box-shadow: 3px 2px 1px rgb(153, 153, 102);
-    width: 45%;
-    height: 250px;
-    margin: 5px;
-    .enews-bg {
-      background: red;
-      height: 150px;
-    }
-    .enews-title {
-      height: 50px;
-      line-height: 50px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-size: 15px;
-      font-weight: bolder;
-    }
-    .enews-user {
-      display: flex;
-      justify-content: space-between;
-      width: 80%;
-      margin: 0 auto;
-      .enews-userimg {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
+.news-wrapper {
+  // overflow: auto;
+  .news-main {
+    display: flex;
+    flex-wrap: wrap;
+    .ever-news {
+      box-shadow: 3px 2px 1px rgb(153, 153, 102);
+      width: 45%;
+      height: 250px;
+      margin: 5px;
+      .enews-bg {
+        background: red;
+        height: 150px;
       }
-      .enews-other {
-        height: 20px;
-        width: 100%;
-        margin: 3px 0;
-        line-height: 20px;
+      .enews-title {
+        height: 50px;
+        line-height: 50px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         font-size: 15px;
+        font-weight: bolder;
+      }
+      .enews-user {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        margin: 0 auto;
+        .enews-userimg {
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+        }
+        .enews-other {
+          height: 20px;
+          width: 100%;
+          margin: 3px 0;
+          line-height: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-size: 15px;
+        }
       }
     }
   }
