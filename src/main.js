@@ -3,10 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vuex from 'vuex'
+
+import store from './store/index'
 import VueTouch from 'vue-touch'
 
-Vue.use(Vuex)
 Vue.use(VueTouch, { name: 'v-touch' })
 
 Vue.config.productionTip = false
@@ -14,6 +14,7 @@ Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App }

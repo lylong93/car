@@ -1,8 +1,8 @@
 <template>
   <div class="find-wrapper" ref="findWwrapper">
     <div class="main" @click="show" ref="main">
-      <img src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2522026432,1558022678&fm=27&gp=0.jpg' ref="img">
-      <div class="main-title">我是题目而已</div>
+      <img src="http://localhost:3000/avatar-1516278425396.jpg" ref="img">
+      <div class="main-title">{{data.title}}</div>
     </div>
     <div class="tab" ref="tab">
       <div v-if="open" class="otab">
@@ -15,15 +15,9 @@
       </div>
     </div>
     <div class="detali" ref="detali">
-      <h1>ok</h1>
-      <h1>ok</h1>
-      <h1>ok</h1>
-      <h1>ok</h1>
-      <h1>ok</h1>
-      <h1>ok</h1>
-      <h1>ok</h1>
-      <h1>ok</h1>
-      <h1>ok</h1>
+      <h1>{{data.time}}</h1>
+      <h1>{{data.address}}</h1>
+      <h1>{{data.main}}</h1>
     </div>
     <div class="close" @click="close" v-if="open">关闭</div>
   </div>
@@ -34,7 +28,9 @@ import api from '../api'
 export default {
   data() {
     return {
-      open: false
+      data: {},
+      open: false,
+      skip: 0
     }
   },
   methods: {
@@ -50,9 +46,11 @@ export default {
       this.$refs.findWwrapper.style.animation = 'route1 1s'
     },
     next() {
-      api.Getaction(this.state)
+      this.skip += 1
+      api.Getaction(this.skip)
         .then((data) => {
-          console.log(data)
+          console.log(data.data.data[0])
+          this.data = data.data.data[0]
         })
       this.$refs.findWwrapper.style.animation = 'route2 1s'
       this.$refs.findWwrapper.addEventListener('animationend', function() {
@@ -69,7 +67,7 @@ export default {
       this.$refs.tab.style.animation = 'tabin 1s'
       this.$refs.tab.style.animationFillMode = 'forwards'
 
-      this.$refs.img.style.animation = "imgi 1s"
+      this.$refs.img.style.animation = 'imgi 1s'
       this.$refs.img.style.animationFillMode = 'forwards'
     },
     _close() {
@@ -79,13 +77,12 @@ export default {
       this.$refs.detali.style.animation = 'deout 0.7s'
 
       this.$refs.tab.style.animation = 'tabout 1s'
-      this.$refs.img.style.animation = "imgo 1s"
+      this.$refs.img.style.animation = 'imgo 1s'
     }
   },
   components: {
-    LButton: button,
-
-  },
+    LButton: button
+  }
 }
 
 </script>

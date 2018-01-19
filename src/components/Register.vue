@@ -18,7 +18,6 @@
   </div>
 </template>
 <script>
-import { Button, Tip } from 'cube-ui'
 import input from '../base/input'
 import button from '../base/button'
 import api from '../api'

@@ -6,9 +6,9 @@ export function publish(body) {
     method: 'post',
     url: '/api/action/publish',
     headers: { 'Content-Type': 'multipart/form-data' },
-    data: body,
+    data: body
   })
 }
-export function getaction(body) {
-  return axios.get('/api/action/getaction')
+export function getaction(skip) {
+  return axios.get(`/api/action/getaction/${skip}`)
 }

@@ -9,5 +9,5 @@ export function rejister(body) {
 }
 
 export function logout() {
-  return axios.post('/api/user', {})
+  return axios.get('/api/user/logout')
 }

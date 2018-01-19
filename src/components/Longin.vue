@@ -2,7 +2,7 @@
   <div class="longin-wrapper">
     <div class="login-input">
       <span>账号</span>
-      <l-input placeholder="输入账号" v-model="state.name" />
+      <l-input placeholder="输入账号" v-model="state.name"></l-input>
     </div>
     <div class="login-input">
       <span>密码</span>
@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-// import { Button } from 'cube-ui'
+import { mapMutations } from 'vuex'
 import button from '../base/button'
 import input from '../base/input'
 import api from '../api'
@@ -32,7 +32,11 @@ export default {
     LInput: input
   },
   methods: {
+    ...mapMutations([
+      'change'
+    ]),
     login() {
+
       api.Login(this.state)
         .then((data) => {
           return data.data
@@ -49,7 +53,8 @@ export default {
               console.log(data.msg)
               break
             default:
-              console.log(data)
+              this.change(data.data.name)
+              this.$router.push('Ok')
           }
         })
     }

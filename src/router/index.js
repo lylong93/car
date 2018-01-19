@@ -17,16 +17,20 @@ export default new Router({
     component: Entry
   }, {
     path: '/ok',
-    name: 'ok',
+    name: 'Ok',
     component: ok,
+    redirect: 'News',
     children: [{
       path: '/news',
+      name: 'News',
       component: News
     }, {
       path: '/find',
+      name: 'Find',
       component: Find
     }, {
       path: '/me',
+      name: 'Me',
       component: Me
     }, {
       path: '/add',

@@ -7,19 +7,19 @@
       </div>
       <div>
         题目
-        <l-input v-model="text" name="title" />
+        <l-input v-model="state.text" name='title' />
       </div>
       <div>
         地址
-        <l-input v-model="address" name="address" />
+        <l-input v-model="state.address" name='address' />
       </div>
       <div>
         时间
-        <l-input v-model="time" name="time" />
+        <l-input v-model="state.time" name='time' />
       </div>
       <div class="t">
         输入内容
-        <l-input type="tes" v-model="main" name="main" />
+        <l-input type="tes" v-model="state.main" name='main' />
       </div>
     </form>
     <l-button @click='add' type="sublime">提交</l-button>
@@ -45,7 +45,7 @@ export default {
   methods: {
     add(e) {
       const form = this.$refs.for
-      let data = new FormData(form);
+      let data = new FormData(form)
       api.Publish(data)
         .then((data) => {
           console.log(data)
@@ -57,7 +57,7 @@ export default {
     LInput: input,
     LUpload: upload,
     LBack: back
-  },
+  }
 }
 
 </script>

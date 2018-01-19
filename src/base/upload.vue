@@ -10,30 +10,30 @@ export default {
   data() {
     return {
       url: '',
-      have: false,
+      have: false
     }
   },
   props: {
     name: {
       type: String,
-      default: '',
+      default: ''
     }
   },
   methods: {
     change() {
       const o = URL.createObjectURL(this.$refs.type.files[0])
-      this.have = true;
-      this.url = o;
+      this.have = true
+      this.url = o
     },
     clean() {
-      this.url = '';
-      this.have = false;
-    },
+      this.url = ''
+      this.have = false
+    }
   },
   computed: {
     disabled() {
       if (this.have) {
-        return "disabled"
+        return 'disabled'
       }
     }
   }
