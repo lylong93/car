@@ -1,6 +1,8 @@
 <template>
   <div class="wrapper">
-    <div class="icon">icon</div>
+    <div class="icon">
+      <Test></Test>
+    </div>
     <div class="tab">
       <div v-for="(item,index) in tabs" @click="tab(index)" class="e-tab" :class="{active:index == num}">
         {{item}}
@@ -19,7 +21,7 @@
 <script>
 import Longin from './Longin'
 import Register from './Register'
-
+import test from '../base/test'
 export default {
   data() {
     return {
@@ -40,7 +42,8 @@ export default {
   },
   components: {
     'm-Longin': Longin,
-    'm-Register': Register
+    'm-Register': Register,
+    'Test': test
   }
 }
 
@@ -55,6 +58,7 @@ export default {
   right: 0;
   .icon {
     height: 30%;
+    width: 100%;
     background: #968f7e;
   }
   .tab {

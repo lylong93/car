@@ -28,10 +28,10 @@ export default {
       'clean'
     ]),
     toAdd() {
+      // console.log(socket)
       this.$router.push('Add')
     },
     logout() {
-      api.Logout()
       this.clean();
       window.location.reload()
     }
