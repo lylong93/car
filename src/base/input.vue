@@ -1,6 +1,6 @@
 <template>
   <div class="input-class">
-    <input v-if='type==="text"' :name="name" class="input-class-text" :placeholder="placeholder" @focus='ok' v-on:input="updata($event.target.value)" @blur="out" />
+    <input v-if='type==="text"' :name="name" class="input-class-text" :placeholder="placeholder" v-on:input="updata($event.target.value)" />
     <textarea class="input-class-textarea" :placeholder="placeholder" :name="name" :rows="textareaSize.rows" :cols="textareaSize.cols" v-else>
     </textarea>
     <slot></slot>
@@ -29,12 +29,6 @@ export default {
     }
   },
   methods: {
-    ok() {
-      console.log('ok')
-    },
-    out() {
-      console.log('out')
-    },
     updata(value) {
       this.$emit('input', value)
     }

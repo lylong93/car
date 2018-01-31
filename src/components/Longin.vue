@@ -36,7 +36,6 @@ export default {
       'change'
     ]),
     login() {
-
       api.Login(this.state)
         .then((data) => {
           return data.data
@@ -53,6 +52,7 @@ export default {
               console.log(data.msg)
               break
             default:
+              console.log('ok')
               this.change(data.data.name)
               this.$router.push('Ok')
           }
