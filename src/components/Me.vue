@@ -32,7 +32,8 @@ export default {
       this.$router.push('Add')
     },
     logout() {
-      this.clean();
+      this.clean()
+      api.Logout()
       window.location.reload()
     }
   },
