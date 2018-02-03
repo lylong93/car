@@ -44,9 +44,10 @@ export default {
       this._getdata(this.page, this.elite)
     },
     scroll() {
+      const odiv = this.$refs.wrapper
       // 节流
       let TimeId
-      window.addEventListener('scroll', function() {
+      odiv.addEventListener('scroll', function() {
         if (TimeId) {
           clearTimeout(TimeId)
         }
@@ -60,7 +61,7 @@ export default {
       function callback() {
         let listenDom = that.$refs.wrapper.getBoundingClientRect()
         // dom已经滚动的加上屏幕高度 小于 dom的高度减去最底下一排的元素高
-        if (Math.abs(listenDom.top) + height > listenDom.height - 350) {
+        if (Math.abs(listenDom.top) + height > listenDom.height - 50) {
           that.loadMore()
         }
       }
@@ -85,13 +86,13 @@ export default {
 </script>
 <style lang='scss'>
 .news-wrapper {
-  // overflow: auto;
+  overflow: auto;
   .news-main {
     display: flex;
     flex-wrap: wrap;
     .ever-news {
       box-shadow: 3px 2px 1px rgb(153, 153, 102);
-      width: 45%;
+      width: 46%;
       height: 250px;
       margin: 5px;
       .enews-bg {

@@ -14,7 +14,7 @@ export default {}
   display: flex;
   height: 60px;
   width: 100%;
-  background: red;
+  background: #008972;
   position: fixed;
   bottom: 0;
   left: 0;

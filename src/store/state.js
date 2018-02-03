@@ -1,4 +1,5 @@
 const state = {
-  name: null
+  name: null,
+  collect: []
 }
 export default state

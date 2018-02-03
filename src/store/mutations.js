@@ -4,6 +4,9 @@ const mutations = {
   },
   clean(state) {
     state.name = null
+  },
+  addCollect(state, data) {
+    state.collect.push(data)
   }
 }
 export default mutations

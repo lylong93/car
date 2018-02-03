@@ -6,8 +6,8 @@
     </div>
     <div class="tab" ref="tab">
       <div v-if="open" class="otab">
-        <l-button class="tab-every">收藏</l-button>
-        <!-- <l-button class="tab-every">对话</l-button> -->
+        <l-button class="tab-every" @click="collect" v-if="this.name">收藏</l-button>
+        <l-button class="tab-every" @click="goEntry" v-else>去登录</l-button>
       </div>
       <div v-else class="otab">
         <l-button @click="prev" class="tab-every">上一个</l-button>
@@ -23,6 +23,7 @@
   </div>
 </template>
 <script>
+import { mapMutations, mapState } from 'vuex'
 import button from '../base/button'
 import api from '../api'
 export default {
@@ -34,6 +35,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'addCollect'
+    ]),
+    collect() {
+      this.addCollect(this.data.title);
+    },
     show() {
       this.open = true
       this._open()
@@ -44,6 +51,9 @@ export default {
     },
     prev() {
       this.$refs.findWwrapper.style.animation = 'route1 1s'
+    },
+    goEntry() {
+      this.$router.push('/')
     },
     next() {
       this.skip += 1
@@ -79,6 +89,11 @@ export default {
       this.$refs.tab.style.animation = 'tabout 1s'
       this.$refs.img.style.animation = 'imgo 1s'
     }
+  },
+  computed: {
+    ...mapState([
+      'name'
+    ]),
   },
   components: {
     LButton: button

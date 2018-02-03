@@ -6,6 +6,7 @@ import Find from '@/components/Find'
 import Me from '@/components/Me'
 import ok from '@/components/ok'
 import Add from '@/components/Add'
+import Collect from '@/components/Collect'
 // import beforeEnter from './beforeEnter'
 
 Vue.use(Router)
@@ -36,6 +37,10 @@ export default new Router({
       path: '/add',
       name: 'Add',
       component: Add
+    }, {
+      path: '/collect',
+      name: 'Collect',
+      component: Collect
     }]
   }]
 })

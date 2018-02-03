@@ -1,7 +1,7 @@
 <template>
   <div class="add-wrapper">
+    <l-back></l-back>
     <form class="add-form" ref="for">
-      <l-back></l-back>
       <div>
         <l-upload name="avatar" />
       </div>
@@ -22,6 +22,7 @@
         <l-input type="tes" v-model="state.main" name='main' />
       </div>
     </form>
+    <div>{{d}}</div>
     <l-button @click='add' type="sublime">提交</l-button>
   </div>
 </template>
@@ -39,7 +40,8 @@ export default {
         time: '',
         main: '',
         title: ''
-      }
+      },
+      d: ''
     }
   },
   methods: {
@@ -48,7 +50,13 @@ export default {
       let data = new FormData(form)
       api.Publish(data)
         .then((data) => {
+          return data.data
+        })
+        .then((data) => {
           console.log(data)
+          if (data.err === 0) {
+            this.$router.push('Find')
+          }
         })
     }
   },
