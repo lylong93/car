@@ -7,7 +7,7 @@
       </div>
       <div>
         题目
-        <l-input v-model="state.text" name='title' />
+        <l-input v-model="state.title" name='title' />
       </div>
       <div>
         地址
@@ -19,11 +19,11 @@
       </div>
       <div class="t">
         输入内容
-        <l-input type="tes" v-model="state.main" name='main' />
+        <l-input type="other" name='main' />
       </div>
     </form>
     <div>{{d}}</div>
-    <l-button @click='add' type="sublime">提交</l-button>
+    <l-button @click='add' type="sublime" class="add-button" :disabled="disabled">发布</l-button>
   </div>
 </template>
 <script>
@@ -38,7 +38,6 @@ export default {
       state: {
         address: '',
         time: '',
-        main: '',
         title: ''
       },
       d: ''
@@ -60,6 +59,15 @@ export default {
         })
     }
   },
+  computed: {
+    disabled() {
+      if (this.state.address && this.state.time && this.state.title) {
+        return false
+      } else {
+        return true
+      }
+    }
+  },
   components: {
     LButton: button,
     LInput: input,
@@ -77,6 +85,10 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+  }
+  .add-button {
+    margin: 5% 0 0 0;
+    width: 80%;
   }
 }
 

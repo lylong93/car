@@ -1,9 +1,10 @@
 <template>
   <div class='news-wrapper' ref="wrapper">
     <div class="flter-wrapper">
-      <span>精品</span>
-      <span>推荐</span>
+      <!-- <span>精品</span>
+      <span>推荐</span> -->
     </div>
+    <Loading v-show="dataList.length === 0" />
     <div class="news-main">
       <div v-for=" (item,e) in dataList" class='ever-news'>
         <div class="enews-bg">
@@ -21,11 +22,11 @@
         </div>
       </div>
     </div>
-    <div @click='loadMore'>more</div>
   </div>
 </template>
 <script>
 import api from '../api'
+import loading from '../base/loading'
 export default {
   data() {
     return {
@@ -36,7 +37,7 @@ export default {
     }
   },
   mounted() {
-    // this.initdata()
+    this.initdata()
     this.scroll()
   },
   methods: {
@@ -80,6 +81,9 @@ export default {
           }
         })
     }
+  },
+  components: {
+    Loading: loading
   }
 }
 

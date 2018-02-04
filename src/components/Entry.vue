@@ -53,15 +53,17 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
+  background-image: url(bc.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
   .icon {
     height: 30%;
     width: 100%;
-    background: #968f7e;
   }
   .tab {
     display: flex;
     height: 10%;
-    background: #968f7e;
+    ;
     font-size: 30px;
     .e-tab {
       width: 50%;
@@ -70,12 +72,13 @@ export default {
   }
   .bottm {
     height: 60%;
+    background: rgba(255, 255, 255, .3);
     .ttm {
       height: 100%;
     }
   }
   .active {
-    border-bottom: 3px solid red;
+    border-bottom: 3px solid #06f;
   }
 }
 

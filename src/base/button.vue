@@ -1,5 +1,5 @@
 <template>
-  <button class="class" @click="handleClick" :class="Dclass">
+  <button class="button-class" @click="handleClick" :class="Dclass">
     <slot></slot>
   </button>
 </template>
@@ -31,7 +31,7 @@ export default {
 </script>
 <style lang="scss">
 @import'../style/index.scss';
-.class {
+.button-class {
   padding: 2%;
   width: 100%;
   border: none;

@@ -1,7 +1,7 @@
 <template>
   <div class="back-class">
     <div @click="back" class="back">
-      返回
+      <i class="icon iconfont">&#xe610;</i>
     </div>
   </div>
 </template>

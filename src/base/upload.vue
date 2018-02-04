@@ -46,12 +46,13 @@ export default {
   display: inline-block;
   height: 100px;
   width: 100px;
-  border: 1px solid red;
+  border: 2px solid red;
   position: relative;
   .in {
     display: inline-block;
     height: 100%;
     width: 100%;
+    opacity: 0;
   }
   img {
     position: absolute;

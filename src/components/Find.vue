@@ -1,12 +1,15 @@
 <template>
   <div class="find-wrapper" ref="findWwrapper">
     <div class="main" @click="show" ref="main">
-      <img src="http://localhost:3000/avatar-1516278425396.jpg" ref="img">
+      <img :src="`http://${data.bgurl}`" ref="img">
       <div class="main-title">{{data.title}}</div>
     </div>
     <div class="tab" ref="tab">
       <div v-if="open" class="otab">
-        <l-button class="tab-every" @click="collect" v-if="this.name">收藏</l-button>
+        <l-button class="tab-every" v-if="this.name">
+          <span v-if="d" @click="tocollect">收藏</span>
+          <span v-else class="has">已收藏</span>
+        </l-button>
         <l-button class="tab-every" @click="goEntry" v-else>去登录</l-button>
       </div>
       <div v-else class="otab">
@@ -15,11 +18,18 @@
       </div>
     </div>
     <div class="detali" ref="detali">
-      <h1>{{data.time}}</h1>
-      <h1>{{data.address}}</h1>
-      <h1>{{data.main}}</h1>
+      <div class="detali-head">
+        <span class="dm">时间</span>{{data.time}}
+        <span class="dm">地点</span>{{data.address}}
+        <div class="detali-main">
+          <div class="dm">活动内容</div>
+          <p>{{data.main}}</p>
+        </div>
+      </div>
     </div>
-    <div class="close" @click="close" v-if="open">关闭</div>
+    <div class="close" @click="close" v-if="open"><i class="icon iconfont">&#xe610;</i>
+    </div>
+  </div>
   </div>
 </template>
 <script>
@@ -31,14 +41,18 @@ export default {
     return {
       data: {},
       open: false,
-      skip: 0
+      skip: 0,
+      more: true
     }
+  },
+  mounted() {
+    this.get(this.skip)
   },
   methods: {
     ...mapMutations([
       'addCollect'
     ]),
-    collect() {
+    tocollect() {
       this.addCollect(this.data.title);
     },
     show() {
@@ -50,22 +64,33 @@ export default {
       this._close()
     },
     prev() {
+      if (this.skip === 0) return
+      this.more = true
+      this.skip -= 1
+      this.get(this.skip)
       this.$refs.findWwrapper.style.animation = 'route1 1s'
     },
     goEntry() {
       this.$router.push('/')
     },
     next() {
+      if (!this.more) return
       this.skip += 1
-      api.Getaction(this.skip)
-        .then((data) => {
-          console.log(data.data.data[0])
-          this.data = data.data.data[0]
-        })
+      this.get(this.skip)
       this.$refs.findWwrapper.style.animation = 'route2 1s'
       this.$refs.findWwrapper.addEventListener('animationend', function() {
         this.$refs.findWwrapper.style.animation = null
       }.bind(this))
+    },
+    get(skip) {
+      api.Getaction(skip)
+        .then((data) => {
+          if (data.data.err === 1) {
+            this.more = false
+            return
+          }
+          this.data = data.data.data[0]
+        })
     },
     _open() {
       this.$refs.findWwrapper.style.overflow = 'scroll'
@@ -92,8 +117,16 @@ export default {
   },
   computed: {
     ...mapState([
-      'name'
+      'name',
+      'collect'
     ]),
+    d() {
+      if (this.collect.indexOf(this.data.title) === -1) {
+        return true
+      } else {
+        return false
+      }
+    }
   },
   components: {
     LButton: button
@@ -108,14 +141,17 @@ export default {
   bottom: 60px;
   width: 100%;
   overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   .main {
     height: 50%;
     width: 80%;
-    background: yellow;
     margin: 0 auto;
     position: relative;
     top: 20%;
     overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
     box-shadow: 10px 10px 10px black;
     img {
       height: 100%;
@@ -133,11 +169,21 @@ export default {
 
   .detali {
     width: 60%;
-    background: blue;
     margin: 0 auto;
     position: relative;
     opacity: 0;
-    font-size: 100px;
+    .detali-head {
+      margin: 10% 0;
+      .dm {
+        font-size: 20px;
+        font-weight: 700;
+        color: blue;
+      }
+    }
+    .detali-main {
+      margin: 10% 0;
+      line-height: 35px;
+    }
   }
   .tab {
     background: rgb(150, 143, 126);
@@ -155,10 +201,15 @@ export default {
         width: 40%;
         height: 50%;
         margin: 10px 0 0 0;
+        .has {
+          color: black;
+        }
       }
     }
   }
 }
+
+
 
 .close {
   position: fixed;

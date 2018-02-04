@@ -96,9 +96,9 @@ export default {
   }
   .login-button {
     position: absolute;
-    width: 100%;
-    bottom: 1%;
-    left: 0;
+    width: 80%;
+    bottom: 5%;
+    left: 10%;
   }
 }
 
