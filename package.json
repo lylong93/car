@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "cube-ui": "^1.2.6",
     "socket.io": "^2.0.4",
     "utility": "^1.13.1",
     "vue": "^2.5.2",
@@ -23,9 +22,6 @@
     "vue-touch": "^2.0.0-beta.4",
     "vuex": "^3.0.1"
   },
-  "compileDependencies": [
-    "cube-ui"
-  ],
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
