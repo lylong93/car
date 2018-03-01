@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 
 import store from './store/index'
-import VueTouch from 'vue-touch'
 
 
 Vue.config.productionTip = false

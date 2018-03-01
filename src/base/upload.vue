@@ -1,5 +1,6 @@
 <template>
   <div class="upload-class">
+    <span class="ad">添加</span>
     <img :src="url" height="100%" width="100%" v-if="have">
     <input type="file" ref="type" @change="change" class="in" :name="name">
     <span @click="clean" v-if="have" class="clean">删除</span>
@@ -48,6 +49,13 @@ export default {
   width: 100px;
   border: 2px solid red;
   position: relative;
+  .ad {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+  }
   .in {
     display: inline-block;
     height: 100%;
@@ -63,6 +71,10 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    color: red;
+    font-weight: 700;
   }
 }
 

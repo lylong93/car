@@ -1,7 +1,7 @@
 <template>
   <div class="input-class">
-    <input v-if='type==="text"' :name="name" class="input-class-text" :placeholder="placeholder" v-on:input="updata($event.target.value)" />
-    <textarea class="input-class-textarea" :placeholder="placeholder" :name="name" :rows="textareaSize.rows" :cols="textareaSize.cols" v-else>
+    <input :type="type" v-if="type!=='textarea'" :name="name" class="input-class-text" :placeholder="placeholder" v-on:input="updata($event.target.value)" />
+    <textarea v-if="type==='textarea'" class="input-class-textarea" :placeholder="placeholder" :name="name" :rows="textareaSize.rows" :cols="textareaSize.cols">
     </textarea>
     <slot></slot>
   </div>

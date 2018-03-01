@@ -1,16 +1,17 @@
 <template>
   <div class="register-wrapper">
     <div class="register-input">
-      账号
+      <span>账号</span>
       <l-input placeholder="输入账号" v-model="state.name" />
+      <span class="msg">{{msg}}</span>
     </div>
     <div class="register-input">
-      密码
-      <l-input placeholder="输入密码" v-model="state.pwd" />
+      <span>密码</span>
+      <l-input placeholder="输入密码" type="password" v-model="state.pwd" />
     </div>
     <div class="register-input">
-      确认
-      <l-input placeholder="再次输入密码" v-model="opwd" />
+      <span>确认</span>
+      <l-input placeholder="再次输入密码" type="password" v-model="opwd" />
     </div>
     <div class="register-button">
       <l-button @click="rejister" :disabled="disabled">注册</l-button>
@@ -29,19 +30,23 @@ export default {
         pwd: ''
       },
       opwd: '',
+      msg: ' '
     }
   },
   methods: {
     rejister() {
-      if (this.state.pwd != this.opwd) {
+      if (this.state.pwd !== this.opwd) {
+        this.msg = '两次输入不一样'
         return
       } else {
         api.Rejister(this.state)
-          .then((d) => {
-            console.log(d)
+          .then((data) => {
+            return data.data
+          })
+          .then((data) => {
+            this.msg = data.msg
           })
       }
-
     }
   },
   computed: {
@@ -49,6 +54,7 @@ export default {
       if (this.state.name && this.state.pwd && this.opwd) {
         return false
       } else {
+        this.msg = ''
         return true
       }
     }
@@ -68,6 +74,15 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  .register-input {
+    position: relative;
+    .msg {
+      position: absolute;
+      left: 50px;
+      top: 50px;
+      color: red;
+    }
+  }
   .register-button {
     position: absolute;
     width: 80%;

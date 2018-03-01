@@ -40,7 +40,7 @@ export default {
   },
   components: {
     'm-Longin': Longin,
-    'm-Register': Register,
+    'm-Register': Register
   }
 }
 
@@ -53,7 +53,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: url(bc.jpg);
+  background-image: url(../../static/bc.jpg);
   background-repeat: no-repeat;
   background-position: center;
   .icon {

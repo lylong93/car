@@ -19,7 +19,7 @@
       </div>
       <div class="t">
         输入内容
-        <l-input type="other" name='main' />
+        <l-input type='textarea' name='main' />
       </div>
     </form>
     <div>{{d}}</div>

@@ -7,7 +7,7 @@
     </div>
     <div>
       <span>密码</span>
-      <l-input placeholder="输入密码" v-model="state.pwd" />
+      <l-input placeholder="输入密码" type="password" v-model="state.pwd" />
     </div>
     <div class="login-button">
       <l-button @click="login" :disabled="disabled">登录</l-button>
@@ -17,7 +17,6 @@
 <script>
 import { mapMutations } from 'vuex'
 import button from '../base/button'
-import mask from '../base/mask'
 import input from '../base/input'
 import api from '../api'
 export default {
@@ -40,23 +39,11 @@ export default {
           return data.data
         })
         .then((data) => {
-          switch (data.err) {
-            case 1:
-              this.msg = data.msg
-              console.log(data.msg)
-              this.ss = true;
-              break
-            case 2:
-              this.msg = data.msg
-              console.log(data.msg)
-              break
-            case 3:
-              this.msg = data.msg
-              console.log(data.msg)
-              break
-            default:
-              this.change(data.data.name)
-              this.$router.push('Ok')
+          if (data.err === 0) {
+            this.change(data.data.name)
+            this.$router.push('Ok')
+          } else {
+            this.msg = data.msg
           }
         })
     }
@@ -66,15 +53,15 @@ export default {
       if (this.state.name && this.state.pwd) {
         return false
       } else {
+        this.msg = ''
         return true
       }
     }
   },
   components: {
     LButton: button,
-    LInput: input,
-    LMask: mask
-  },
+    LInput: input
+  }
 }
 
 </script>
@@ -92,6 +79,7 @@ export default {
       position: absolute;
       left: 50px;
       top: 50px;
+      color: red;
     }
   }
   .login-button {

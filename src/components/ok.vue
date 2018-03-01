@@ -9,8 +9,7 @@ import Nav from './Nav.vue'
 export default {
   components: {
     'm-nav': Nav
-  },
-
+  }
 }
 
 </script>

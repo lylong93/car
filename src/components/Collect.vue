@@ -19,7 +19,7 @@ export default {
   computed: {
     ...mapState([
       'collect'
-    ]),
+    ])
   },
   components: {
     LBack: back

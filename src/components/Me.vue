@@ -53,7 +53,7 @@ export default {
   computed: {
     ...mapState([
       'name'
-    ]),
+    ])
   },
   components: {
     LButton: button,

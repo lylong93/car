@@ -2,7 +2,7 @@
   <div class="find-wrapper" ref="findWwrapper">
     <div class="main" @click="show" ref="main">
       <img :src="`http://${data.bgurl}`" ref="img">
-      <div class="main-title">{{data.title}}</div>
+      <div class="main-title" v-show="!this.open">{{data.title}}</div>
     </div>
     <div class="tab" ref="tab">
       <div v-if="open" class="otab">
@@ -53,7 +53,7 @@ export default {
       'addCollect'
     ]),
     tocollect() {
-      this.addCollect(this.data.title);
+      this.addCollect(this.data.title)
     },
     show() {
       this.open = true
@@ -70,9 +70,6 @@ export default {
       this.get(this.skip)
       this.$refs.findWwrapper.style.animation = 'route1 1s'
     },
-    goEntry() {
-      this.$router.push('/')
-    },
     next() {
       if (!this.more) return
       this.skip += 1
@@ -81,6 +78,9 @@ export default {
       this.$refs.findWwrapper.addEventListener('animationend', function() {
         this.$refs.findWwrapper.style.animation = null
       }.bind(this))
+    },
+    goEntry() {
+      this.$router.push('/')
     },
     get(skip) {
       api.Getaction(skip)
@@ -120,6 +120,7 @@ export default {
       'name',
       'collect'
     ]),
+    // 判断是否收藏
     d() {
       if (this.collect.indexOf(this.data.title) === -1) {
         return true
@@ -162,7 +163,7 @@ export default {
       position: absolute;
       top: 10%;
       left: 10%;
-      color: white;
+      color: #f60;
       font-size: 50px;
     }
   }
@@ -311,11 +312,9 @@ export default {
 
 @keyframes imgi {
   from {
-    // top: -50%;
-    top: 0; // opacity: 1;
+    top: 0;
   }
   to {
-    // top: -50%;
     top: 0;
     left: 0;
     opacity: 1;
